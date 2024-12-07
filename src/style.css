@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  font-family: "Roboto", sans-serif, Helvetica, Arial, sans-serif;
+  line-height: 1;
+  font-weight: 400;
+
+}
+
+.rammetto {
+  font-family: "Rammetto One", sans-serif;
+}
+
+h1 {
+  font-size: 2.5em;
+  font-family: "Rammetto One", sans-serif;
+  /* line-height: 1.1; */
+
+}
+
+.logo {
+  font-size: 4.5em;
+  letter-spacing: -2px;
+  font-family: "Rammetto One", sans-serif;
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 900;
+}
+
+h3 {
+  font-size: 2em;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 1em;
+  font-weight: 900;
+}
+
+h5 {
+  font-size: .7em;
+  font-weight: 900;
+}
+
+p {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: inherit;
+}
+
+
+.container {
+  padding: 40px 0;
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  overflow: scroll;
+}
+
+button, .btn {
+  /* width:fit-content; */
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 15px 20px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.primaryBtn {
+  color: white;
+  background-color: #ef4444;
+
+}
+.primaryBtn:hover,
+.primaryBtn:focus,
+.primaryBtn:focus-visible {
+  background-color: #b91c1c;
+  outline: 4px #b91c1c auto -webkit-focus-ring-color;
+}
+
+.secondBtn {
+  color: black;
+  background-color: #f3f4f6;
+
+}
+.secondBtn:hover,
+.secondBtn:focus,
+.secondBtn:focus-visible {
+  border: #ef4444 1px solid;
+  outline: 4px #ef4444 auto -webkit-focus-ring-color;
+}
+
+.linkBtn {
+  font-size: .8em;
+  font-weight: 100px;
+  background-color: transparent;
+}
+
+.linkBtn:hover {
+  color: #ef4444;
+}
+
+.card {
+  padding: 2em;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 700;
+  /* margin-top: 20px; */
+  display: flex;
+  align-items: center;
+}
+
+input {
+  padding: 15px 20px;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  margin: 5px 0;
+  /* min-width: 200px; */
+  width: 100%;
+  border: 1px solid transparent;
+
+
+}
+
+input:hover,
+input:focus,
+input:focus-visible {
+  outline: none;
+  /* border-radius: 8px 8px 0 0; */
+  border: 1px solid #ef4444;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none !important;
+  -ms-appearance: none !important;
+  -o-appearance: none !important;
+  appearance: none !important;
+
+  padding: 0 ;
+  width: 20px ;
+  height: 20px ;
+  border-radius: 2px;
+  /* margin-top: 20px; */
+  margin-right: 10px;
+  border: 1px solid gray;
+}
+
+input[type="checkbox"]:checked
+{
+  border: 1px solid #ef4444;
+  background-color: #ef4444;
+} 
+
+.popup {
+  position: absolute;
+
+}
