@@ -8,10 +8,7 @@ export const useUserStore = defineStore('user', {
     email(state) {
       return state.user?.email || null; 
     },
-    // Uncomment if needed:
-    // name(state) {
-    //   return state.user?.name || null; 
-    // },
+
   },
   actions: {
     setUser(user) {

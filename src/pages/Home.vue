@@ -5,7 +5,11 @@
     import { logOutUser } from "../utils/checkUserStatus";
 
     const userStore = useUserStore();
-    const signedIn = computed(() => userStore);
+    const signedIn = computed(() => userStore.email);
+
+    console.log('signedIn');
+    console.log(signedIn);
+
 
     const handleLogout = async () => {
       await logOutUser();
@@ -15,10 +19,10 @@
 </script>
 
 <template>
-  <div class="container h-lvh">
+  <div class="container fullWidth h-lvh bg-white">
     <div class="m-5">
-      <h1 class="text-rose uppercase font-bold logo">Paws Up 🐾</h1>
-      <p class="m-2">Keep your furry friends happy and healthy with Paws Up!</p>
+      <h1 class="text-rose uppercase font-bold logo">Paws Up</h1>
+      <p class="m-2 text-black">Manage vaccine records and get renewal reminders with Paws Up🐾 </p>
     </div>
     <div v-if="signedIn" class="m-5">
       <router-link to="/account" class="btn primaryBtn">Account</router-link>

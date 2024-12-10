@@ -7,7 +7,6 @@ import { db } from "../firebaseConfig";
 const props = defineProps({
   visible: { type: Boolean, required: true }, // Controls visibility of the popup
   dogData: { type: Object, default: () => ({}) }, // Data for editing
-  isEditing: { type: Boolean, default: false }, // Determines add or edit mode
 });
 
 
@@ -30,12 +29,10 @@ watch(
 // Save the data to Firebase
 const saveUser = async () => {
   try {
-    if (props.isEditing) {
-      // Update existing dog data
-      const dogRef = doc(db, "users", formData.id); // Use the dog's document ID
+          const dogRef = doc(db, "users", formData.id); // Use the dog's document ID
       await updateDoc(dogRef, {
         name: formData.name,
-        age: parseInt(formData.age),
+        age: formData.age,
         weight: parseInt(formData.weight),
         breed: formData.breed,
         email: formData.email,
@@ -43,20 +40,6 @@ const saveUser = async () => {
         vaccines: formData.vaccines
       });
       alert("Dog details updated successfully!");
-    } else {
-      // Add new dog data
-      await addDoc(collection(db, "users"), {
-        name: formData.name,
-        age: parseInt(formData.age),
-        weight: parseInt(formData.weight),
-        breed: formData.breed,
-        email: formData.email,
-        vaccined: formData.vaccined,
-        vaccines: formData.vaccines
-
-      });
-      alert("Dog added successfully!");
-    }
     close(); // Close the popup after saving
   } catch (error) {
     console.error("Error saving data:", error);
@@ -72,7 +55,7 @@ const close = () => {
 <template>
     <div v-if="visible" class="popup-overlay max-w-[400px] w-full m-[30px] absolute p-5 shadow-2xl rounded-lg border border-grayD bg-white z-50 top-0">
       <div class="popup-content">
-        <h3 class="my-8">{{ isEditing ? "Edit Dog Details" : "Add a Dog" }}</h3>
+        <h3 class="my-4 text-rose">Edit</h3>
         <form @submit.prevent="saveUser" class="text-left">
           <label for="name">Name</label>
           <input v-model="formData.name" placeholder="Dog's name" required />
@@ -89,6 +72,16 @@ const close = () => {
           <label for="email">Email</label>
           <input v-model="formData.email" placeholder="Email" type="email" required />
 
+
+          <div class="flex justify-between items-center mb-5">
+          <label for="checkbox"> Is {{ formData.name }} vaccined? </label>
+          <input 
+
+            type="checkbox" 
+            v-model="formData.vaccined" 
+          />
+        </div>
+
           <div v-if="formData.vaccined">
           <div v-for="(vaccine, index) in formData.vaccines" :key="index" class="vaccine-row my-2" >
             <label>
@@ -100,7 +93,7 @@ const close = () => {
           <!-- <button type="button" @click="vaccines.push({ vaccineName: '', date: '' })">Add Vaccine</button> -->
         </div>
   
-          <button class="primaryBtn m-2" type="submit">{{ isEditing ? "Save Changes" : "Continue" }}</button>
+          <button class="primaryBtn m-2" type="submit">Save Changes</button>
           <button class="secondBtn m-2" type="button" @click="close">Cancel</button>
         </form>
       </div>

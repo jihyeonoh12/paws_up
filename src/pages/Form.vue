@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-      <h2 class="m-8">Tell us about your furry friends!</h2>
-      <form class="text-left max-w-[300px] w-full" @submit.prevent="saveUser">
+      <h3 class="m-14 text-rose">Tell us about your furry friends!</h3>
+      <form class="text-left max-w-[400px] w-full" @submit.prevent="saveUser">
         <label for="name">Name</label>
         <input v-model="name" required />
 
@@ -55,6 +55,7 @@ const breed = ref("");
 const email = ref(userStore.email || "");
 const vaccined = ref(false);
 const today = new Date().toISOString().split('T')[0];
+
 
 const vaccines = ref([
   { type: "Rabies", vaccined: false, date: "" },
