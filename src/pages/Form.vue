@@ -4,8 +4,10 @@
       <form class="text-left max-w-[300px] w-full" @submit.prevent="saveUser">
         <label for="name">Name</label>
         <input v-model="name" required />
-        <label for="age">Age (total months, only number)</label>
-        <input v-model="age" required pattern="[0-9]+"/>
+
+        <label for="age">Birthday</label>
+        <input type="date" v-model="age" :max="today" required />
+
         <label for="weight">weight (only number)</label>
         <input v-model="weight" required  pattern="[0-9]+"/>
         <label for="breed">Breed (optional)</label>
@@ -52,6 +54,7 @@ const weight = ref("");
 const breed = ref("");
 const email = ref(userStore.email || "");
 const vaccined = ref(false);
+const today = new Date().toISOString().split('T')[0];
 
 const vaccines = ref([
   { type: "Rabies", vaccined: false, date: "" },
@@ -77,7 +80,7 @@ const saveUser = async () => {
   try {
     const userData = {
       name: name.value,
-      age: parseInt(age.value),
+      age: age.value,
       weight: parseInt(weight.value),
       breed: breed.value,
       email: email.value,

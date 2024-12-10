@@ -16,6 +16,7 @@ const emit = defineEmits(["close"]); // Emit close event to parent
 
 // Reactive formData initialized with dogData
 const formData = reactive({ ...props.dogData });
+const today = new Date().toISOString().split('T')[0];
 
 // Watch for changes in dogData to update formData
 watch(
@@ -77,7 +78,7 @@ const close = () => {
           <input v-model="formData.name" placeholder="Dog's name" required />
           
           <label for="age">Age</label>
-          <input v-model="formData.age" placeholder="Age" type="number" required />
+          <input v-model="formData.age" placeholder="Age" type="date" :max="today"  required />
           
           <label for="weight">Weight</label>
           <input v-model="formData.weight" placeholder="Weight" type="number" required />
@@ -96,7 +97,7 @@ const close = () => {
             </label>
             <input v-if="vaccine.vaccined" v-model="vaccine.date" type="date" required />
           </div>
-          <button type="button" @click="vaccines.push({ vaccineName: '', date: '' })">Add Vaccine</button>
+          <!-- <button type="button" @click="vaccines.push({ vaccineName: '', date: '' })">Add Vaccine</button> -->
         </div>
   
           <button class="primaryBtn m-2" type="submit">{{ isEditing ? "Save Changes" : "Continue" }}</button>

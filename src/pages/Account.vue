@@ -1,6 +1,9 @@
 <script setup>
 import { watch, ref, onMounted, onUnmounted } from "vue";
 import { useUserStore } from "../stores/userStore";
+import { calculateAge } from "../utils/calculateAge";
+import { calculateDueDate } from "../utils/calculateDueDate";
+
 import { fetchUserByEmail } from "../utils/fetchUser";
 import { deleteDog } from "../utils/deleteDogData";
 
@@ -32,6 +35,7 @@ const fetchData = async (email) => {
   try {
     const data = await fetchUserByEmail(email); // Your existing function to fetch data
     userData.value = data; // Update userData reactively
+ 
   } catch (error) {
     console.error("Error fetching user data:", error);
     userData.value = null;
@@ -104,8 +108,6 @@ const removeDog = (dog, index) => {
 const runDeleteDog = (id, index) => {
   deleteDog(id, index);
   removePopupVisible.value = false;
-
-
 }
 
 const closePopup = () => {
@@ -131,16 +133,21 @@ const closeRemovePopup = () => {
         <h1 class="logo pb-5 rounded-lg">🐶</h1>
         <div class="leading-10">
           <h3 class="rammetto">{{ user.name }}</h3>
-          <p>Age: {{ user.age }} months old</p>
+          <p>Age: {{ (calculateAge(user.age)).age }} {{ calculateAge(user.age).ageType }} </p>
           <p>Weight: {{ user.weight }} lb</p>
           <p>Breed: {{ user.breed }}</p>
+
           <div class="" >
             <h4 class="text-rose mt-5 border-b border-rose">Vaccination Info</h4>
             <div v-if="user.vaccined" v-for="(vaccine, index) in user.vaccines" :key="index" 
             class="vaccine-row border-b border-gray" >
               <p>
-                <span v-if="vaccine.date">{{ vaccine.type }} : {{ vaccine.date }}</span>
-                <span class="text-[#9ca3af]" v-else>{{ vaccine.type }} : No Info</span>
+                
+                {{ vaccine.type }} : 
+                <span :class="(calculateDueDate( vaccine , (calculateAge(user.age).ageDays) ) === 'No Info') ? 'text-roseL' : '' ">
+                {{ calculateDueDate( vaccine , (calculateAge(user.age).ageDays) ) }}
+              </span>
+                <!-- <span class="text-[#9ca3af]" v-else>{{ vaccine.type }} : No Info</span> -->
               </p>
             </div>
             <p class="text-[#9ca3af]" v-else>Needs Vaccination!</p>
