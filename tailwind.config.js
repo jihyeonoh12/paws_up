@@ -12,6 +12,7 @@ export default {
       black: '#4b5563',
       gray: '#f3f4f6',
       grayD: '#e5e7eb',
+      grayD2: '#b3b7c0',
       rose: '#dc2626',
       roseD: '#b91c1c',
       roseL: '#ef4444',

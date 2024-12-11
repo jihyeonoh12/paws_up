@@ -11,10 +11,8 @@ const deleteDog = async (dogId, index) => {
       await deleteDoc(docRef);
       // Remove the dog from the local array after successful deletion
     //   dogInfo.value.splice(index, 1);
-      alert("Dog record deleted successfully.");
     } catch (error) {
       console.error("Error deleting dog record:", error);
-      alert("Failed to delete dog record.");
     }
   };
 

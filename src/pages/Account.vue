@@ -4,8 +4,6 @@ import { watch, ref, onMounted, onUnmounted } from "vue";
 import { collection, query, where, onSnapshot } from "firebase/firestore"; 
 
 import { useUserStore } from "../stores/userStore";
-import { calculateAge } from "../utils/calculateAge";
-import { calculateDueDate } from "../utils/calculateDueDate";
 import { fetchUserByEmail } from "../utils/fetchUser";
 import { deleteDog } from "../utils/deleteDogData";
 import { db } from "../firebaseConfig"; 
@@ -112,7 +110,6 @@ const closePopup = () => {
 const closeRemovePopup = () => {
   removePopupVisible.value = false;
 };
-
 </script>
 
 
@@ -131,19 +128,18 @@ const closeRemovePopup = () => {
         <h1 class="logo pb-5 rounded-lg">🐶</h1>
         <div class="leading-10">
           <h2 class="rammetto">{{ user.name }}</h2>
-          <p>Age: {{ (calculateAge(user.age)).age }} {{ calculateAge(user.age).ageType }} </p>
+          <p>Birthday: {{ user.birthday }} </p>
           <p>Weight: {{ user.weight }} lb</p>
-          <p>Breed: {{ user.breed }}</p>
+          <p v-if="user.breed">Breed: {{ user.breed }}</p>
 
           <div class="" >
             <h4 class="text-rose mt-5 border-b border-rose">Vaccination Info</h4>
             <div  v-for="(vaccine, index) in user.vaccines" :key="index" 
             class="vaccine-row border-b border-gray" >
               <p>
-                
                 {{ vaccine.type }} : 
-                <span :class="(calculateDueDate( vaccine , (calculateAge(user.age).ageDays) ) === 'No Info') ? 'text-[#9ca3af]' : (calculateDueDate( vaccine , (calculateAge(user.age).ageDays)).includes('Expired')) ? 'text-roseL' : '' ">
-                {{ calculateDueDate( vaccine , (calculateAge(user.age).ageDays) ) }}
+                <span :class=" vaccine.reminder === 'No Info' ? 'text-[#9ca3af]' : (vaccine.reminder.includes('Expired')) ? 'text-roseL' : '' ">
+                {{  vaccine.reminder }}
               </span>
               </p>
             </div>
