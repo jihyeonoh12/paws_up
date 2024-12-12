@@ -30,7 +30,7 @@ export function calculateDueDate( type, date, age ) {
             Leptospirosis: 12, 
           };
           const difference = (vaccineDurations[type] - ageInWeek);
-          const isOverDue = difference <= 0 ? `Time for first vaccine!` : `Required in ${difference} weeks`
+          const isOverDue = difference === 0 ? `Time for first vaccine!` :( difference > 0 ? `Required in ${difference} weeks` : `Overdue`);
 
         return vaccineMessage = isOverDue;
     }  
