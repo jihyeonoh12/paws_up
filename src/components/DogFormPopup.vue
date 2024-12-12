@@ -5,42 +5,35 @@ import { db } from "../firebaseConfig";
 import { calculateAge } from "../utils/calculateAge";
 import { calculateDueDate } from "../utils/calculateDueDate";
 
-// Props
 const props = defineProps({
-  visible: { type: Boolean, required: true }, // Controls visibility of the popup
-  dogData: { type: Object, default: () => ({}) }, // Data for editing
+  visible: { type: Boolean, required: true }, 
+  dogData: { type: Object, default: () => ({}) }, 
 });
 
-
 // Emits
-const emit = defineEmits(["close"]); // Emit close event to parent
+const emit = defineEmits(["close"]);
 
 // Reactive formData initialized with dogData
 const formData = reactive({ ...props.dogData });
-console.log('formData');
-
-console.log(formData);
 const today = new Date().toISOString().split('T')[0];
 
-// Watch for changes in dogData to update formData
+
 watch(
   () => props.dogData,
   (newData) => {
-    Object.assign(formData, newData); // Update formData when dogData changes
+    Object.assign(formData, newData);
   },
   { immediate: true }
 );
 
-// Save the data to Firebase
 const saveUser = async () => {
-
   formData.age = calculateAge(formData.birthday);
   formData.vaccines.forEach(vaccine => {
         vaccine.reminder = calculateDueDate(vaccine.type, vaccine.date , formData.age);
   });
   
   try {
-      const dogRef = doc(db, "users", formData.id); // Use the dog's document ID
+      const dogRef = doc(db, "users", formData.id);
       await updateDoc(dogRef, {
         name: formData.name,
         age: formData.age,
@@ -57,14 +50,13 @@ const saveUser = async () => {
 
       console.log(formData);
       alert("Dog details updated successfully!");
-    close(); // Close the popup after saving
+    close(); 
   } catch (error) {
     console.error("Error saving data:", error);
     alert("Failed to save data.");
   }
 };
 
-// Close the popup
 const close = () => {
   emit("close");
 };
@@ -90,12 +82,12 @@ const close = () => {
           <input v-model="formData.email" placeholder="Email" type="email" required />
 
           <div class="flex justify-between items-center mb-5">
-          <label for="checkbox">Subscribe to email reminders</label>
-          <input 
-            type="checkbox" 
-            v-model="isSubscribed" 
-          />
-        </div>
+            <label for="checkbox">Subscribe to email reminders</label>
+            <input 
+              type="checkbox" 
+              v-model="isSubscribed" 
+            />
+          </div>
 
           <div class="flex justify-between items-center mb-5">
           <label for="checkbox"> Is {{ formData.name }} vaccined? </label>

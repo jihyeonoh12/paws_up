@@ -54,7 +54,7 @@ const signInWithEmail = async () => {
 
     if (!result.user.emailVerified) {
       alert("Your email is not verified. Please check your inbox for the verification email.");
-      return; // Prevent further actions if the email is not verified
+      return; 
     }
     window.location.href = "/account"; 
 

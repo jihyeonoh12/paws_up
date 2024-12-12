@@ -7,15 +7,9 @@
     const userStore = useUserStore();
     const signedIn = computed(() => userStore.email);
 
-    console.log('signedIn');
-    console.log(signedIn);
-
-
     const handleLogout = async () => {
       await logOutUser();
     };
-
-
 </script>
 
 <template>
