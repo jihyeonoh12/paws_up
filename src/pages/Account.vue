@@ -138,7 +138,7 @@ const closeRemovePopup = () => {
             class="vaccine-row border-b border-gray" >
               <p>
                 {{ vaccine.type }} : 
-                <span v-if="vaccine.reminder" :class=" vaccine.reminder === 'No Info' ? 'text-[#9ca3af]' : (vaccine.reminder.includes('Expired')) ? 'text-roseL' : '' ">
+                <span v-if="vaccine.reminder" :class=" vaccine.reminder === 'No Info' ? 'text-[#9ca3af] whitespace-nowrap' : (vaccine.reminder.includes('Expired')) ? 'text-roseL whitespace-nowrap' : 'whitespace-nowrap' ">
                 {{  vaccine.reminder }}
               </span>
               <span v-else>No Info</span>

@@ -29,9 +29,10 @@ export function calculateDueDate( type, date, age ) {
             Hepatitis: 8, 
             Leptospirosis: 12, 
           };
-          console.log('test');
+          const difference = (vaccineDurations[type] - ageInWeek);
+          const isOverDue = difference <= 0 ? `Time for first vaccine!` : `Required in ${difference} weeks`
 
-        return vaccineMessage = 'Required in ' + (vaccineDurations[type] - ageInWeek) + ' weeks';
+        return vaccineMessage = isOverDue;
     }  
     else if( ageInWeek > 8 && ageInWeek < 52  && date) {
         const vaccineDurations = {

@@ -20,8 +20,8 @@ export async function logOutUser() {
   try {
     await signOut(auth);
 
-    const userStore = useUserStore(); // Access the Pinia store
-    userStore.clearUser(); // Reset the user state using the store's action
+    const userStore = useUserStore(); 
+    userStore.clearUser();
 
     console.log("User signed out successfully.");
   } catch (error) {

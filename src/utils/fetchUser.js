@@ -18,10 +18,10 @@ async function fetchUserByEmail(email) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log("Fetch User Data:", userData);
+      // console.log("Fetch User Data:", userData);
       return userData; // Returns an array of user objects
     } else {
-      console.log("No user found with the given email.");
+      // console.log("No user found with the given email.");
       return null;
     }
   } catch (error) {

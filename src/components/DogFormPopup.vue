@@ -45,15 +45,11 @@ const saveUser = async () => {
         vaccined: formData.vaccined,
         vaccines: formData.vaccines
       });
-
-      console.log('formData');
-
-      console.log(formData);
-      alert("Dog details updated successfully!");
+      // alert("Dog details updated successfully!");
     close(); 
   } catch (error) {
     console.error("Error saving data:", error);
-    alert("Failed to save data.");
+    // alert("Failed to save data.");
   }
 };
 
@@ -85,7 +81,7 @@ const close = () => {
             <label for="checkbox">Subscribe to email reminders</label>
             <input 
               type="checkbox" 
-              v-model="isSubscribed" 
+              v-model="formData.isSubscribed" 
             />
           </div>
 

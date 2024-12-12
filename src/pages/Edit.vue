@@ -1,13 +1,12 @@
 <script setup>
 import { reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { db } from "../firebaseConfig"; // Firestore initialization
+import { db } from "../firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
 
 const route = useRoute();
 const router = useRouter();
 
-// Create a reactive copy of the dog's data from query params
 const dog = reactive({
   id: route.query.id,
   name: route.query.name,
@@ -15,14 +14,12 @@ const dog = reactive({
   weight: route.query.weight,
   breed: route.query.breed,
 });
-console.log(route.query.id);
 
-// Save the updated data to Firestore
 const saveDog = async () => {
   if (!dog.id) return;
   console.log('test');
 
-  const dogRef = doc(db, "dogs", dog.id); // Assumes "dogs" collection in Firestore
+  const dogRef = doc(db, "dogs", dog.id); 
   try {
     await updateDoc(dogRef, {
       name: dog.name,
@@ -31,14 +28,13 @@ const saveDog = async () => {
       breed: dog.breed,
     });
     alert("Dog data updated successfully!");
-    router.push({ name: "DogList" }); // Navigate back to the list page
+    router.push({ name: "DogList" });
   } catch (error) {
     console.error("Error updating dog data:", error);
     // alert("Failed to update dog data.");
   }
 };
 
-// Navigate back without saving
 const goBack = () => {
   router.push({ name: "account" });
 };
