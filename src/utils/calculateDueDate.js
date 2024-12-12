@@ -8,14 +8,14 @@ export function calculateDueDate( type, date, age ) {
         const vaccinationDate = new Date(date);
         const currentDate = new Date();
         const durationDays = vacDuration[type] || 0;
-
         const nextDueDate = new Date(vaccinationDate.getTime() + durationDays * 24 * 60 * 60 * 1000);
 
-
-        if( currentDate.getTime() < nextDueDate.getTime()) {
-            vaccineMessage = `Due ${nextDueDate.toISOString().split('T')[0]}`;
-        } else {
+        if (currentDate.getDate() === nextDueDate.getDate()) {
+            vaccineMessage = `Expired today`
+        } else if(currentDate.getDate() > nextDueDate.getDate()) {
             vaccineMessage = `Expired. Due ${nextDueDate.toISOString().split('T')[0]}`;
+        } else {
+            vaccineMessage = `Due ${nextDueDate.toISOString().split('T')[0]}`;
         }
         
         return vaccineMessage;
