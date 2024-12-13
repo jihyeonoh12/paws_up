@@ -114,7 +114,7 @@ const closeRemovePopup = () => {
 
 
 <template>
-  <div class="container relative sm:px-8 lg:px-0 my-10">
+  <div class="container relative my-10">
   <div>
   <!-- <h4 class="text-rose uppercase font-bold logoSM p-4 mb-4">Paws Up 🐾</h4> -->
   <router-link to="/" class="text-rose uppercase font-bold logoSM p-4 mb-4">Paws Up</router-link>
@@ -123,7 +123,7 @@ const closeRemovePopup = () => {
   <h5 class="text-rose mt-8">Welcome Back</h5>
   <h4 class="py-[10px] px-[18px] mt-1 mb-5 ">{{ userStore.email }}</h4> 
   <div class="flex flex-wrap w-full justify-center" >
-    <div class="basis-full sm:basis-1/2 lg:basis-1/3 p-3 text-left" v-if="userData && userData.length > 0" v-for="(user, index) in userData" :key="index">
+    <div class="basis-full sm:basis-1/2 lg:basis-1/3 py-2 sm:p-2 text-left" v-if="userData && userData.length > 0" v-for="(user, index) in userData" :key="index">
       <div class="border-2 border-grayD rounded-lg p-6 sm:p-8 h-full">
         <h1 class="logo pb-5 rounded-lg">🐶</h1>
         <div class="leading-10">
@@ -165,11 +165,12 @@ const closeRemovePopup = () => {
       @close="closePopup"
     />
 
-    <div v-if="removePopupVisible" class="absolute p-8 shadow-2xl rounded-lg border border-grayD bg-white z-50">
+    <div v-if="removePopupVisible" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 shadow-2xl rounded-lg border border-grayD bg-white z-50">
       <p class="mb-8">Remove <strong>{{ selectedDog.name }}</strong>?</p>
+      <div class="flex gap-2">
       <button class="mr-2 secondBtn" @click="runDeleteDog(selectedDog.id, currentDataIndex)">Remove</button>
       <button class="primaryBtn" @click="closeRemovePopup">Cancel</button>
-
+      </div>
     </div>
 
   </div>

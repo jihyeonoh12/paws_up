@@ -71,7 +71,7 @@ a {
 .container {
   min-height: 100vh;
   height: 100%;
-  padding: 60px 0;
+  padding: 60px 15px;
   max-width: 1150px;
   width: 100%;
   display: flex;
@@ -154,6 +154,13 @@ label {
 }
 
 input {
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none !important;
+  -ms-appearance: none !important;
+  -o-appearance: none !important;
+  appearance: none !important;
+
   padding: 15px 20px;
   background-color: #f3f4f6;
   border-radius: 8px;
@@ -174,13 +181,6 @@ input:focus-visible {
 }
 
 input[type="checkbox"] {
-  -webkit-appearance: none;
-  appearance: none;
-  -moz-appearance: none !important;
-  -ms-appearance: none !important;
-  -o-appearance: none !important;
-  appearance: none !important;
-
   padding: 0 ;
   width: 20px ;
   height: 20px ;
@@ -190,6 +190,7 @@ input[type="checkbox"] {
   border: 1px solid gray;
   margin-bottom: 0;
 }
+
 
 input[type="checkbox"]:checked
 {

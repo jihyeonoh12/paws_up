@@ -4,7 +4,8 @@
       <form class="text-left max-w-[400px] w-full" @submit.prevent="saveUser">
         <label for="name">Name</label>
         <input v-model="name" required />
-
+        <label for="name">Name</label>
+        <input v-model="name" required />
         <label for="birthday">Birthday</label>
         <input type="date" v-model="birthday" :max="today" required />
 

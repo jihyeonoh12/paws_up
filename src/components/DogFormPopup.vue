@@ -16,7 +16,7 @@ const emit = defineEmits(["close"]);
 // Reactive formData initialized with dogData
 const formData = reactive({ ...props.dogData });
 const today = new Date().toISOString().split('T')[0];
-
+console.log(today);
 
 watch(
   () => props.dogData,
@@ -58,8 +58,9 @@ const close = () => {
 };
 </script>
 <template>
-    <div v-if="visible" class="popup-overlay max-w-[400px] w-full m-[30px] absolute p-5 shadow-2xl rounded-lg border border-grayD bg-white z-50 top-0">
-      <div class="popup-content">
+    <div v-if="visible"   
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div class="relative max-h-[100vh] sm:max-h-[90vh] max-w-[400px] w-full overflow-y-auto p-5 shadow-2xl rounded-lg bg-white">
         <h3 class="my-4 text-rose">Edit</h3>
         <form @submit.prevent="saveUser" class="text-left">
           <label for="name">Name</label>
