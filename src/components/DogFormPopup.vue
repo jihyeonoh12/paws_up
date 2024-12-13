@@ -60,7 +60,7 @@ const close = () => {
 <template>
     <div v-if="visible"   
       class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div class="relative max-h-[100vh] sm:max-h-[90vh] max-w-[400px] w-full overflow-y-auto p-5 shadow-2xl rounded-lg bg-white">
+      <div class="relative max-h-[100vh] sm:max-h-[90vh] max-w-[400px] w-full overflow-y-auto py-16 sm:py-5 px-5 shadow-2xl sm:rounded-lg bg-white">
         <h3 class="my-4 text-rose">Edit</h3>
         <form @submit.prevent="saveUser" class="text-left">
           <label for="name">Name</label>
